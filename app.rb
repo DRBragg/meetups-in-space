@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'faker'
 require_relative 'config/application'
 
 set :bind, '0.0.0.0'  # bind to all interfaces
@@ -33,5 +34,11 @@ get '/sign_out' do
 end
 
 get '/meetups' do
+  @meetups = Meetup.all.order(:name)
   erb :'meetups/index'
+end
+
+get '/meetups/:id' do
+  @meetup = Meetup.find(params[:id])
+  erb :'meetups/show'
 end

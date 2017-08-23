@@ -8,6 +8,7 @@ gem "sinatra", "~> 2.0"
 gem "sinatra-contrib"
 gem 'sinatra-activerecord', '2.0.13'
 gem 'sinatra-flash'
+gem 'faker'
 
 group :development, :test do
   gem 'capybara'
