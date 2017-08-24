@@ -1,9 +1,31 @@
 <h1><%= @meetup.name %> Meetup</h1>
-<h2><%= @meetup.location %></h2>
+<h2>at <%= @meetup.location %></h2>
 <h3>Organizer: <%= @meetup.creator %></h3>
+<a href="/meetups/<%= @meetup.id %>/edit"><button>Edit</button></a>
 
 <p>
   <%= @meetup.description %>
 </p>
 
-<button>RSVP</button>
+<a href="/meetups"><button>Back to meetups</button></a>
+
+<h3>RSVP's:</h3>
+<ul style="list-style-type: none">
+  <% @meetup.users.each do |user| %>
+  <li>
+    <img src="<%= user.avatar_url %>" alt="avatar image" width="75" height="75" style="vertical-align: middle"/>
+    <p style="vertical-align: middle; display: inline-block; font-size: 1.5em; margin-left: 10px">
+      <%= user.username %>
+    </p>
+  </li>
+  <% end %>
+</ul>
+
+
+<% if current_user.nil? || !current_user.meetups.include?(@meetup) %>
+  <a href="/rsvp/<%= @meetup.id %>"><button>RSVP</button></a>
+<% end %>
+
+<% if current_user.meetups.include?(@meetup) %>
+  <a href="/unrsvp/<%= @meetup.id %>"><button>unRSVP</button></a>
+<% end %>

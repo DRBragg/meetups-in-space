@@ -38,3 +38,8 @@ a:visited {
   padding: 1em;
   background-color: #3B9089;
 }
+
+.alert {
+  padding: 1em;
+  background-color: #FF5656;
+}

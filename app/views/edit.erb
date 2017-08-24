@@ -1,0 +1,31 @@
+<h1>Edit Meetup</h1>
+
+<form action="/meetups/<%= @meetup.id %>/edit" method="post">
+  <div>
+    <label for="name">Meetup Name:</label>
+    <input type="text" id="name" name="meetup[name]" value="<%= @meetup.name %>">
+  </div>
+
+  <div>
+    <label for="location">Meetup Location:</label>
+    <input type="text" id="location" name="meetup[location]" value="<%= @meetup.location %>">
+  </div>
+
+  <div>
+    <label for="description">Meetup Description:</label>
+    <textarea id="description" name="meetup[description]" value="<%= @meetup.description %>"><%= @meetup.description %></textarea>
+  </div>
+
+  <input type="submit" value="Edit Meetup">
+</form>
+
+
+<ul>
+  <% @meetup.errors.messages.each do |field, messages| %>
+    <% messages.each do |message| %>
+      <li><%= field.to_s.gsub("_", " ") %> <%= message %></li>
+    <% end %>
+  <% end %>
+</ul>
+
+<a href="/meetups/<%= @meetup.id %>"><button>Back to meetup</button></a>
